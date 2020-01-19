@@ -1,0 +1,18 @@
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # 返回构造的TreeNode根节点
+    def reConstructBinaryTree(self, pre, tin):
+        # write code here
+        if not tin:
+            return None
+        root = TreeNode(pre[0])
+        x = tin.index(root.val)
+        root.left=self.reConstructBinaryTree(pre[1:x+1],tin[:x])
+        root.right=self.reConstructBinaryTree(pre[x+1:],tin[x+1:])
+        return root
