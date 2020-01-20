@@ -1,0 +1,13 @@
+# -*- coding:utf-8 -*-解法一
+class Solution:
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+    def push(self, node):     
+        self.stack1.append(node)    
+    def pop(self):
+        if self.stack2:    #利用空列表的隐式布尔值判断，不推荐用if len(self.stack2)>0:
+            return self.stack2.pop()  #pop默认删除序列的最后一个值并返回
+        while self.stack1:  #不需要else
+            self.stack2.append(self.stack1.pop())         
+        return self.stack2.pop()
