@@ -1,0 +1,25 @@
+# -*- coding:utf-8 -*- 解法一 二分法
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        # write code here
+        if len(rotateArray)==0:
+            return 0
+        low,high=0,len(rotateArray)-1  #不要写成low=0,high=len(rotateArray)-1,要么就拆成两行
+        while low < high:
+            mid = (low+high)/2
+            if rotateArray[mid] < rotateArray[high]:
+                high=mid   #注意不是high=mid+1
+            elif rotateArray[mid] > rotateArray[high]:
+                low=mid+1
+            else: high=high-1  #要考虑[mid]=[high]的情况，这时只能一个一个试
+                               #[22212] [11121] [12111]
+        return rotateArray[low]  #当low=high时输出
+
+
+# -*- coding:utf-8 -*-解法二 min
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        # write code here
+        if len(rotateArray)==0:
+            return 0
+        return min(rotateArray)
