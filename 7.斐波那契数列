@@ -1,0 +1,9 @@
+# -*- coding:utf-8 -*-动态规划
+# 此题用递归过于消耗资源，优先选用迭代
+class Solution:
+    def Fibonacci(self, n):
+        # write code here
+        a=[0,1,1]  #利用前头计算出来的值依次推出后面要求的值
+        while len(a)<=n:
+            a.append(a[-1]+a[-2])
+        return a[n]
