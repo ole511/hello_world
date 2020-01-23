@@ -1,0 +1,14 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def rectCover(self, number):
+        # write code here
+        n=[0,1,2]
+        while len(n)<=number:
+            n.append(n[-1]+n[-2])
+        return n[number]
+    '''
+    实际上是 n[-2]+1+n[-1]-1
+    因为每个所求的最终解可以看成是2*(n-2)+2*2的矩形和2*(n-1)+2*1的矩形
+    当2*(n-2)变成2*n时，剩余的2*2空间有两种可能，在2*(n-2)的基础上增加了一种可能
+    然而当2*(n-1)变成2*n时，只有一种竖着的可能，并与2*(n-2)+2*2中的一种重复了,所以要减去1
+    '''
