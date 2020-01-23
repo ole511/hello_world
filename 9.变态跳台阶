@@ -1,0 +1,28 @@
+# -*- coding:utf-8 -*-解法一
+# 最笨的方法，时间复杂度o(n^2)
+class Solution:
+    def jumpFloorII(self, number):
+        # write code here
+        n=[1,1,2]
+        while len(n)<=number:
+            n.append(sum(n[:]))
+        return n[number]
+        
+        
+# -*- coding:utf-8 -*-解法二
+# 将序列末尾的值乘以2即下一个台阶要求的值，画图理解
+class Solution:
+    def jumpFloorII(self, number):
+        # write code here
+        n=[1,1,2]
+        while len(n)<=number:
+            n.append(n[-1]*2)
+        return n[number]
+        
+        
+# -*- coding:utf-8 -*-解法三
+# 每一个台阶都要选择跳或者不跳，除了最后一个台阶，所以是2**(number-1)
+class Solution:
+    def jumpFloorII(self, number):
+        # write code here
+        return 2**(number-1)
