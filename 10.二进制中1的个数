@@ -1,0 +1,38 @@
+# -*- coding:utf-8 -*- 普通的n循环右移的解法
+'''
+注意要设置最大循环数为32，防止n为负数时溢出
+'''
+class Solution:
+    def NumberOf1(self, n):
+        # write code here
+        res=0
+        for i in range(32):
+            res += (n>>i)&1  #这里n的值只是代入但并没有被改变
+        return res
+    #28ms 5684k
+    
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def NumberOf1(self, n):
+        # write code here
+        res=0
+        for i in range(32):
+            res += n&1
+            n=n>>1 #方法与上面一个相同都是n右移一位，这个好理解一点
+            #也可以选择1不断左移的方法，类似
+        return res
+        #28ms
+
+# -*- coding:utf-8 -*- 自己想不到的解法，最优解
+class Solution:
+    def NumberOf1(self, n):
+        # write code here
+        count = 0        
+        if n < 0:      #注意负数的处理
+            n = n & 0xffffffff  #为了获得负数（十进制表示）的补码，需要手动将其和十六进制数0xffffffff进行按位与操作
+        while n:           
+            count += 1       
+            n = (n - 1) & n  #消去n的最右边的一个1，直至为0
+        return count
+        #26ms
