@@ -1,0 +1,59 @@
+# -*- coding:utf-8 -*- 最普通的解法
+class Solution:
+    def Power(self, base, exponent):
+        # write code here
+        if base==0:
+            return 0
+        if exponent==0:
+            return 1
+        a=base
+        if exponent>0:
+            for i in range (exponent-1):
+                base=base*a
+            return base
+        for i in range (-1*exponent-1):
+            base=base*a
+        base=1.0/base
+        return base
+
+
+# -*- coding:utf-8 -*- 内置函数
+import math
+class Solution:
+    def Power(self, base, exponent):
+        # write code here
+        return math.pow(base,exponent)     # return base**exponent
+        
+# -*- coding:utf-8 -*-递归法，但是在题目测试中超过了最大递归深度
+class Solution:
+    def Power(self, base, exponent):
+        # write code here
+        def abspower(base,exponent):
+            if exponent==1:
+                return base
+            subresult=abspower(base,exponent/2)
+            return exponent%2 and base*subresult*subresult or subresult*subresult
+        if exponent==0:
+            return 1
+        if base==0:
+            return 0
+        return exponent<0 and 1.0/abspower(base,exponent) or abspower(base,exponent)
+        
+ 
+ # -*- coding:utf-8 -*- 二进制递推解法 重点
+class Solution:
+    def Power(self, base, exponent):
+        # write code here
+        if exponent==0:
+            return 1
+        if base==0:
+            return 0
+        e= -exponent if exponent<0 else exponent   #(python中没有" 条件?a:b "的表达式)
+        # e= exponent<0 and -exponent or exponent
+        res=1
+        while e>0:
+            if e & 1:
+                res=res*base
+            e=e>>1
+            base=base*base
+        return exponent<0 and 1.0/res or res
