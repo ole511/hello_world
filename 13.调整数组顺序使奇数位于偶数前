@@ -1,0 +1,32 @@
+# -*- coding:utf-8 -*-额外空间复制拼接法
+class Solution:
+    def reOrderArray(self, array):
+        # write code here
+        odd,even=[],[]
+        for i in array:
+            odd.append(i) if i%2==1 else even.append(i)
+        return odd+even
+        #29ms
+
+
+# -*- coding:utf-8 -*-内置函数sorted+lambda 一行搞定
+class Solution:
+    def reOrderArray(self, array):
+        # write code here
+        return sorted(array,key=lambda c:c%2,reverse=True) #结果为[奇数，偶数]  若是reverse=False,结果为[偶数，奇数]
+        #34ms
+
+
+# -*- coding:utf-8 -*- 双指针
+class Solution:
+    def reOrderArray(self, array):
+        # write code here
+        i,j=0,len(array)-1
+        while i<=j:
+            if array[i]&1==1:
+                i+=1
+            else:
+                j-=1
+                array.append(array.pop(i)) 
+        return array
+        #30ms
