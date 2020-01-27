@@ -28,6 +28,8 @@ class Solution:
 class Solution:
     def FindKthToTail(self, head, k):
         # write code here
+        if not head or k<1:
+            return None
         cu=head
         fast=head
         while k>1:
