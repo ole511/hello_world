@@ -28,22 +28,15 @@ class Solution:
 class Solution:
     def FindKthToTail(self, head, k):
         # write code here
-        if not head or k<1:
-            return None
         cu=head
         fast=head
-        count=1
         while k>1:
             if fast.next:
                 fast=fast.next
                 k-=1
             else: 
                 return
-        count += k-1
         while fast.next:
             fast=fast.next
             cu=cu.next
-            count+=1
-        if count<k :
-            return None
         return cu
