@@ -1,0 +1,49 @@
+# -*- coding:utf-8 -*- 序列储存指针
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def FindKthToTail(self, head, k):
+        # write code here
+        cu=head
+        ArrayList=[]
+        while cu:
+            ArrayList.append(cu)
+            cu=cu.next
+        if k>len(ArrayList) or k<1:
+            return
+        return ArrayList[-k]
+
+
+
+
+# -*- coding:utf-8 -*-快慢指针法
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def FindKthToTail(self, head, k):
+        # write code here
+        if not head or k<1:
+            return None
+        cu=head
+        fast=head
+        count=1
+        while k>1:
+            if fast.next:
+                fast=fast.next
+                k-=1
+            else: 
+                return
+        count += k-1
+        while fast.next:
+            fast=fast.next
+            cu=cu.next
+            count+=1
+        if count<k :
+            return None
+        return cu
