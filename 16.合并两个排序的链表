@@ -1,0 +1,81 @@
+# -*- coding:utf-8 -*- 挨个比较插入法
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    # 返回合并后列表
+    def Merge(self, pHead1, pHead2):
+        # write code here
+        if pHead1==None:
+            return pHead2
+        if pHead2==None:
+            return pHead1
+        if pHead2.val<pHead1.val:
+            mid=pHead1
+            pHead1=pHead2
+            pHead2=pHead1
+        left=pHead1
+        right=left.next
+        mid=pHead2
+        while mid != None:
+            if right==None:    # mid.val>=left.val的条件是自动成立的
+                left.next=pHead2
+                return pHead1
+            elif mid.val>=left.val and mid.val<=right.val:
+                pHead2=pHead2.next
+                mid.next=right
+                left.next=mid
+                left=mid
+                mid=pHead2
+            else :
+                left=left.next
+                right=left.next
+        return pHead1
+        
+        
+        
+# -*- coding:utf-8 -*-递归方法
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    # 返回合并后列表
+    def Merge(self, pHead1, pHead2):
+        # write code here
+        if pHead1==None:
+            return pHead2
+        if pHead2==None:
+            return pHead1
+        if pHead1.val<pHead2.val:
+            pHead1.next=self.Merge(pHead1.next, pHead2)
+            return pHead1
+        else:
+            pHead2.next=self.Merge(pHead1, pHead2.next)
+            return pHead2
+            
+            
+            
+#     def __init__(self, x): python独特解法 sort函数自动调整升序 重新建立链表
+#         self.val = x
+#         self.next = None
+class Solution:
+    # 返回合并后列表
+    def Merge(self, pHead1, pHead2):
+        # write code here
+        res=[]
+        while pHead1:
+            res.append(pHead1.val)
+            pHead1=pHead1.next
+        while pHead2:
+            res.append(pHead2.val)
+            pHead2=pHead2.next
+        res.sort()
+        dummy=ListNode(0)
+        cur=dummy
+        for i in res:
+            node=ListNode(i)
+            cur.next=node
+            cur=cur.next
+        return dummy.next
