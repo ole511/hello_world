@@ -14,7 +14,7 @@ class Solution:
         if pHead2.val<pHead1.val:
             mid=pHead1
             pHead1=pHead2
-            pHead2=pHead1
+            pHead2=mid
         left=pHead1
         right=left.next
         mid=pHead2
