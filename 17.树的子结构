@@ -1,0 +1,30 @@
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    '''
+    先递归查找Tree1中是否存在与Tree2相同值的根节点
+    然后递归判断两个树的每个节点是否相同
+    '''
+    def HasSubtree(self, pRoot1, pRoot2):
+        # write code here
+        result=False
+        if pRoot1!=None and pRoot2!=None:
+            if pRoot1.val == pRoot2.val:
+                result = self.tree2intree1(pRoot1,pRoot2)
+            if not result:
+                result = self.HasSubtree(pRoot1.left,pRoot2)
+            if not result:
+                result = self.HasSubtree(pRoot1.right,pRoot2)
+        return result
+    def tree2intree1(self,pRoot1,pRoot2):
+        if pRoot2==None: #必须先判断树2是否为空
+            return True
+        if pRoot1==None:
+            return False
+        if pRoot1.val != pRoot2.val:
+            return False
+        return self.tree2intree1(pRoot1.left,pRoot2.left) and self.tree2intree1(pRoot1.right,pRoot2.right)
