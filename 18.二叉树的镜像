@@ -16,3 +16,30 @@ class Solution:
         self.Mirror(root.left)
         self.Mirror(root.right)
         return root
+
+
+
+# -*- coding:utf-8 -*- 非递归
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回镜像树的根节点
+    def Mirror(self, root):
+        # write code here
+        if not root:
+            return root
+        cur=root
+        stack=[]
+        while stack:
+            while cur:
+                temp=cur.left
+                cur.left=cur.right
+                cur.right=temp
+                stack.append(cur)
+                cur=cur.left
+            top=stack.pop()
+            cur=top.right
+        return root
