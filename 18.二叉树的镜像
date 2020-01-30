@@ -33,7 +33,7 @@ class Solution:
             return root
         cur=root
         stack=[]
-        while stack:
+        while stack or cur:
             while cur:
                 temp=cur.left
                 cur.left=cur.right
