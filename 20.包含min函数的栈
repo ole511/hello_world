@@ -1,0 +1,41 @@
+# -*- coding:utf-8 -*- python内置函数法
+class Solution:
+    def __init__(self):
+        self.stack=[]
+    def push(self, node):
+        # write code here
+        self.stack.append(node)
+    def pop(self):
+        # write code here
+        return self.stack.pop()
+    def top(self):
+        # write code here
+        return self.stack[-1]
+    def min(self):
+        # write code here
+        return min(self.stack)
+
+
+
+# -*- coding:utf-8 -*- 另设置一个栈保存最小值，且len(minstack)==len(stack),pop时一起弹出
+class Solution:
+    def __init__(self):
+        self.stack=[]
+        self.minstack=[]
+    def push(self, node):
+        # write code here
+        if not self.minstack:
+            self.minstack.append(node)
+        else:
+            self.minstack.append(min(node,self.minstack[-1]))
+        self.stack.append(node)
+    def pop(self):
+        # write code here
+        self.minstack.pop()
+        return self.stack.pop()
+    def top(self):
+        # write code here
+        return self.stack[-1]
+    def min(self):
+        # write code here
+        return self.minstack[-1]
