@@ -6,7 +6,7 @@ class Solution:
     def IsPopOrder(self, pushV, popV):
         # write code here
         if not pushV and not popV:
-            return True
+            return False
         if len(pushV) != len(popV):
             return False
         if len(pushV)==1 and len(popV)==1 and pushV[0]!=popV[0]:  #判断False的情况而非True的情况
@@ -30,6 +30,10 @@ class Solution:
 class Solution:
     def IsPopOrder(self, pushV, popV):
         # write code here
+        if not pushV and not popV:
+            return False
+        if len(pushV) != len(popV):
+            return False
         stack=[]
         while popV:
             #如果pushV和popV的第一个元素相等，那么直接弹出，不用压入stack
