@@ -1,4 +1,7 @@
-# -*- coding:utf-8 -*-
+# -*- coding:utf-8 -*- #POP前后索引比较法+超超帮我改的代码
+'''
+popV中后一个出栈的值在pushV中的索引不能小于（前一个出栈的值的索引-1）
+'''
 class Solution:
     def IsPopOrder(self, pushV, popV):
         # write code here
@@ -6,14 +9,40 @@ class Solution:
             return True
         if len(pushV) != len(popV):
             return False
-        if len(pushV)==1 and len(popV)==1 and pushV[0]==popV[0]:
-            return True
+        if len(pushV)==1 and len(popV)==1 and pushV[0]!=popV[0]:  #判断False的情况而非True的情况
+            return False
         i=1
-        while i < (len(popV)-1):
+        while i <= (len(popV)-1):   #即便只剩下两个值也要进行判断，避免[1][2]-->[3][4]的情况，所以是<=
             cur = pushV.index(popV[i])
             pre = pushV.index(popV[i-1])
-            if cur < (pre-1):
+            if cur < (pre-1):   #核心判断条件
                 return False
             i+=1
             del pushV[pre]
+        return True
+        
+        
+        
+# -*- coding:utf-8 -*- 新建stack 二重比较法 *巧妙 记下来
+'''
+新建stack，popV与pushV || popV与stack互相比较，直到popV中的值都弹出 完成判断
+'''
+class Solution:
+    def IsPopOrder(self, pushV, popV):
+        # write code here
+        stack=[]
+        while popV:
+            #如果pushV和popV的第一个元素相等，那么直接弹出，不用压入stack
+            if pushV and pushV[0]==popV[0]:
+                pushV.pop(0)
+                popV.pop(0)
+            #如果stack的最后一个元素和popV的第一个元素相等，也都弹出
+            elif stack and stack[-1]==popV[0]:
+                popV.pop(0)
+                stack.pop()
+            #如果pushV中还有数据，并且上面都无法满足，当前值弹不出，那就压入stack
+            elif pushV:
+                stack.append(pushV.pop(0))
+            else :
+                return False
         return True
