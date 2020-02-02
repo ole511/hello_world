@@ -1,0 +1,19 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def IsPopOrder(self, pushV, popV):
+        # write code here
+        if not pushV and not popV:
+            return True
+        if len(pushV) != len(popV):
+            return False
+        if len(pushV)==1 and len(popV)==1 and pushV[0]==popV[0]:
+            return True
+        i=1
+        while i < (len(popV)-1):
+            cur = pushV.index(popV[i])
+            pre = pushV.index(popV[i-1])
+            if cur < (pre-1):
+                return False
+            i+=1
+            del pushV[pre]
+        return True
