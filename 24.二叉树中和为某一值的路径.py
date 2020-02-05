@@ -9,6 +9,12 @@
 如果和等于期望值，把结果保存下来，最终输出所有结果
 注意：list为可变变量，每次保存的时候用切片实现拷贝
 '''
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 class Solution:
     # 返回二维列表，内部每个列表表示找到的路径
     def FindPath(self, root, expectNumber):
@@ -22,6 +28,9 @@ class Solution:
             if not root.left and not root.right:
                 if sum(path) == expectNumber:
                     res.append(path[:])
+                path.pop()
+            elif sum(path) > expectNumber:
+                return
                 path.pop()
             else:
                 if root.left:
