@@ -24,14 +24,14 @@ class Solution:
         path=[]
         res=[]
         def find(root):
+            if sum(path) > expectNumber:
+                return #为什么这两句放在append后也能通过？
             path.append(root.val)
             if not root.left and not root.right:
                 if sum(path) == expectNumber:
                     res.append(path[:])
                 path.pop()
-            elif sum(path) > expectNumber:
-                return
-                path.pop()
+
             else:
                 if root.left:
                     find(root.left)
