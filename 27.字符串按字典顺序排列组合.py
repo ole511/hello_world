@@ -23,3 +23,31 @@ class Solution:
         return strlist
 
 
+
+
+
+
+
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def Permutation(self, ss):
+        # write code here
+        if not ss:
+            return []
+        s=list(ss)
+        s.sort()
+        end=len(s)
+        res=[ss]
+        res.append(self.permu(s,0,end))
+        return res
+    
+    def permu(self,s,position,end):
+        if position==end:
+            return '',join(s)
+        else:
+            for i in range(position,end):
+                if i == position or s[i]!=s[position]:
+                    s[i],s[position]=s[position],s[i]
+                    self.permu(s,position+1,end)
+                    s[i],s[position]=s[position],s[i]
