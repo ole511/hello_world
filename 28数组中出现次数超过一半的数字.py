@@ -2,9 +2,10 @@
 class Solution:
     def MoreThanHalfNum_Solution(self, numbers):
         # write code here
+        if not numbers:
+            return 0
         numbers.sort()
         mid=len(numbers)/2
-        
         if numbers[numbers.index(numbers[mid-1])+mid] == numbers[mid-1]:
             return numbers[mid]
         else:
