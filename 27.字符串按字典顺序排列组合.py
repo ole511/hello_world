@@ -72,3 +72,32 @@ class Solution:
                     s[i],s[position]=s[position],s[i]
                     self.permu(s,position+1,end,res)
                     s[i],s[position]=s[position],s[i]
+
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def Permutation(self, ss):
+        # write code here
+        if not ss:
+            return []
+        s=list(ss)
+        s.sort()
+        res=[]
+        l=len(s)
+        visited=[False]*l
+        res_str=[]
+        def dfs(s,res,res_str,visited):
+            if len(res_str)==l:
+                res.append(''.join(res_str))
+                return
+            for i in range(l):
+                if visited[i]:
+                    continue
+                if i!=0 and not visited[i-1] and s[i]==s[i-1]:
+                    continue
+                visited[i]=True
+                res_str.append[i]
+                dfs(s,res,res_str,visited)
+                res_str.pop()
+                visited[i]=False
+        return res
