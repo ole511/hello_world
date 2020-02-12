@@ -3,17 +3,14 @@
 '''
 
 # -*- coding:utf-8 -*-
-class Solution:
+class Solution:  #最LOW的解法，没有算法思维，不要用
     def GetLeastNumbers_Solution(self, tinput, k):
         # write code here
-        if not tinput:
+        if not tinput or k==0 or k>len(tinput):
             return []
         tinput.sort()
-        if k>len(tinput):
-            return []
         return tinput[:k]
         
-
         
         
 # -*- coding:utf-8 -*- 快速排序法
@@ -51,3 +48,36 @@ class Solution:
         return res
     
     
+
+# -*- coding:utf-8 -*- 构建大根堆
+class Solution:
+    def GetLeastNumbers_Solution(self, tinput, k):
+        # write code here
+        if not tinput or k>len(tinput) or k==0:
+            return []
+        
+        def heap_adjust(a,i,size): # 保持将每个根的值都大于左右孩子
+            left=2*i+1
+            right=2*i+2
+            max_index=i
+            if left<size and a[left]>a[max_index]:
+                max_index=left
+            if right<size and a[right]>a[max_index]:
+                max_index=right
+            if max_index!=i:
+                a[max_index],a[i]=a[i],a[max_index]
+                heap_adjust(a,max_index,size)  #被换的那个元素继续作为根，维护自己的小堆
+            return a
+            
+        def build_heap(a,size):  #创建大根堆
+            for i in range(k//2,-1,-1):  #将每个a[i]作为根节点 自底向上创建
+                heap_adjust(a,i,size)
+            return a
+        
+        res=build_heap(tinput[:k],k)
+        for i in tinput[k:]:
+            if i<res[0]:
+                res[0]=i
+                heap_adjust(res,0,k)
+        res.sort()
+        return res
