@@ -23,7 +23,7 @@ class Solution:
     def FirstNotRepeatingChar(self, s):
         # write code here
         if not s: return -1
-        ls=[0]*256
+        ls=[0]*128
         for i in s:
             ls[ord(i)]+=1
         for i in s:
