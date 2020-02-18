@@ -35,12 +35,14 @@ class Solution:
                 k-=1
         #一起走，判断是否相同
         while p1 is not p2:
-          #这里如果改成：
-          # while p1:
-          #   if p1!=p2:
-          # 会超过指定运算时间
             p1=p1.next
             p2=p2.next
+      #这里也可以改成： 
+      # while p1:
+      #   if p1!=p2:
+      #      p1=p1.next
+      #      p2=p2.next
+      #    else: break
         return p1
         
         
