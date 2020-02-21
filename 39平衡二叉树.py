@@ -21,3 +21,26 @@ class Solution:
         
         
         
+        
+        
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    self.isbalance=True
+    def IsBalanced_Solution(self, pRoot):
+        # write code here
+        if not pRoot:return True
+        self.depth(pRoot)
+        return self.isbalance
+    
+    def depth(self,pRoot):
+        if not pRoot : return 0
+        left=self.depth(pRoot.left)
+        right=self.depth(pRoot.right)
+        if abs(left-right)>1: self.isbalance=False
+        return max(left,right)+1
+        
