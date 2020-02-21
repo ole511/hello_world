@@ -30,7 +30,8 @@ class Solution:
 #         self.left = None
 #         self.right = None
 class Solution:
-    self.isbalance=True
+    def __init__(self):
+        self.isbalance=True
     def IsBalanced_Solution(self, pRoot):
         # write code here
         if not pRoot:return True
