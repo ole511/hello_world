@@ -1,0 +1,37 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    # 返回[a,b] 其中ab是出现一次的两个数字
+    def FindNumsAppearOnce(self, array):
+        # write code here
+        if not array:return
+        sum=0
+        for i in array:
+            sum ^= i
+        k=0
+        while ((sum>>k) & 1)==0: k+=1
+        num1,num2=0,0
+        for i in array:
+            if ((i>>k) & 1) ==0 : num1^=i
+            else: num2^=i
+        res=[num1,num2]
+        return res
+        
+        
+        
+        
+# -*- coding:utf-8 -*-
+class Solution:
+    # 返回[a,b] 其中ab是出现一次的两个数字
+    def FindNumsAppearOnce(self, array):
+        # write code here
+        if not array:return
+        a=0
+        for i in array:
+            a ^= i
+        diff = (a & -a)
+        num1,num2=0,0
+        for i in array:
+            if i & diff == 0: num1 ^= i
+            else: num2 ^= i
+        res=[num1,num2]
+        return res
