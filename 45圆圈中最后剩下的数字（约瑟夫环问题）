@@ -1,0 +1,35 @@
+# -*- coding:utf-8 -*- 递归 好理解  剑指offer中会超过最大递归深度而不通过
+class Solution:
+    def LastRemaining_Solution(self, n, m):
+        # write code here
+        if n<1 or m<1:return -1
+        if n==1:return 0
+        else:
+            return(self.LastRemaining_Solution(n-1,m)+m)%n
+            
+            
+            
+            
+# -*- coding:utf-8 -*- 动态规划  代码简洁 思路敏捷
+class Solution:
+    def LastRemaining_Solution(self, n, m):
+        # write code here
+        if n<1 or m<1:return -1
+        last=0   #如果只有一个小朋友，最后剩下的就是他自己
+        for i in range(2,n+1):  #如果有两个以上的小朋友，这里模拟从只有两个人到有n个人最后剩下的index
+            last=(last+m)%i
+        return last
+        
+        
+        
+# -*- coding:utf-8 -*- 数组模拟整个游戏过程实现
+class Solution:
+    def LastRemaining_Solution(self, n, m):
+        # write code here
+        if n<1 or m<1:return -1
+        stu=[i for i in range(n)]
+        temp=0
+        while len(stu)!=1:
+            temp=(temp+m-1)%len(stu)
+            stu.pop(temp)
+        return stu[0]
