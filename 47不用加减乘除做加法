@@ -1,0 +1,10 @@
+# -*- coding:utf-8 -*- 位运算:异或做个位数的加法，与运算和<<1做进位
+class Solution:
+    def Add(self, num1, num2):
+        # write code here
+        while num2:
+            a=(num1 ^ num2) &0xffffffff
+            b=((num1 & num2)<<1) &0xffffffff   #不能直接num2=((num1 & num2)<<1) &0xffffffff,有问题
+            num1=a
+            num2=b
+        return num1 if num1<= 0x7fffffff else ~(num1^0xffffffff)
