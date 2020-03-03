@@ -61,7 +61,7 @@ class Solution:
         pattern=re.compile(r'[+-]?\d+\b')
         m=pattern.match(s)
         #上面使用的是findall方法，在字符串中找到所匹配的所有子串，并返回一个列表，还要通过*解压。
-        #这里用的是match方法：尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match()就返回none。
+        #这里用的是match方法：尝试从字符串的起始位置匹配，如果不是起始位置匹配成功的话，match()就返回none。
         if not m : return 0
         m=int(m.group())  # group返回匹配成功的整个子串
         if m>(1<<31)-1 or m<-(1<<31):return 0  #判断溢出情况
