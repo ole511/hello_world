@@ -1,0 +1,31 @@
+'''
+请删除一个 排序的链表中 重复的结点，返回链表头指针。 
+例如，链表1->2->3->3->4->4->5 处理后为 1->2->5
+         1->1->1->1->2    处理后为 ->2
+         
+！难点是当链表头有重复的时候要怎么处理
+'''
+
+
+# -*- coding:utf-8 -*-  新建一个头节点
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    def deleteDuplication(self, pHead):
+        # write code here
+        if not pHead or not pHead.next:return pHead
+        head=ListNode(-1)   # 新建一个头节点
+        head.next=pHead     # 这样原本的链表头也可以作为后续结点处理了
+        cur,pre=head.next,head
+        while cur:          # 这里的处理过程也是写得比较简洁的
+            if cur.next and cur.val==cur.next.val:
+                while cur.next and cur.val==cur.next.val:
+                    cur=cur.next
+                pre.next=cur.next
+                cur=cur.next
+            else:
+                pre=pre.next
+                cur=cur.next
+        return head.next
