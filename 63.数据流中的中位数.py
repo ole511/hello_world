@@ -9,8 +9,30 @@
     偶数时，将num与后半段的最小值比较。中位数是（前半段的最大值+后半段的最小值）/2.0
 
 二、前半段大顶堆，后半段小顶堆。
+    但是python没有直接可以调用的大顶堆，要自己写，有点麻烦。
+
+三、利用内置的bisect函数实现二分插入。简单高效。
 
 '''
+
+# -*- coding:utf-8 -*- bisect函数实现二分查找插入num
+# 插入时间复杂度O(logn), 获取中位数时间复杂度O(1)
+import bisect
+class Solution:
+    def __init__(self):
+        self.data=[]
+        self.sum=[]
+    def Insert(self, num):
+        # write code here
+        bisect.insort(self.data,num)
+        self.sum+=1
+        #index = bisect_left(self.data,num)
+        #self.data.insert(index,num)
+    def GetMedian(self,o):
+        # write code here
+        if sum % 2:
+            return self.data[sum/2]
+        return (self.data[sum/2]+self.data[(sum/2)-1])/2.0
 
 # -*- coding:utf-8 -*-
 class Solution:
